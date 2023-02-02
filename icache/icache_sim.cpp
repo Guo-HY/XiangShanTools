@@ -12,8 +12,12 @@
 #define MULTIHIT_ERR -4
 
 enum RefillType {
-  MISS_RT,
   IPF_RT,
+  MISS_RT,
+};
+char refillTypeStr[2][20] = {
+  "IPF",
+  "MISSUNIT",
 };
 
 struct refillInfo {
@@ -86,11 +90,7 @@ int readIn(char* orifile, char* extfile)
 
 char* printRefillType(RefillType t)
 {
-  if (t == RefillType::IPF_RT) {
-    return "IPF";
-  } else {
-    return "MISSUNIT";
-  }
+  return refillTypeStr[t];
 }
 
 bool checkMultiHit(FILE* resultFp, struct refillInfo* rInfo)
